@@ -28,6 +28,23 @@ export const ContextProvider = ({children}) =>{
 
     const isAuthenticated = !!user;
 
+    // Toast state
+    const [toasts, setToasts] = useState([]);
+
+    const showToast = (message, type = 'info', duration = 3000) => {
+        const id = Date.now() + Math.random();
+        const toast = { id, message, type };
+        setToasts((t) => [...t, toast]);
+        setTimeout(() => {
+            setToasts((t) => t.filter((x) => x.id !== id));
+        }, duration);
+        return id;
+    };
+
+    const removeToast = (id) => {
+        setToasts((t) => t.filter((x) => x.id !== id));
+    };
+
     // demo login: accepts username 'admin' and password 'admin123'
     const login = async ({ username, password }) => {
         // In a real app you'd call an API here. This is a simple placeholder.
@@ -89,7 +106,11 @@ export const ContextProvider = ({children}) =>{
            user,
            isAuthenticated,
            login,
-           logout
+           logout,
+           // toast
+           toasts,
+           showToast,
+           removeToast
         }}>
             {children}
         </StateContext.Provider>

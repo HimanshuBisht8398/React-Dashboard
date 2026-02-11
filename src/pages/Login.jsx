@@ -7,12 +7,13 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { login } = useStateContext();
+  const { login, showToast } = useStateContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await login({ username, password });
     if (res.success) {
+      showToast('Logged in successfully', 'success');
       navigate('/');
     } else {
       setError(res.message || 'Login failed');

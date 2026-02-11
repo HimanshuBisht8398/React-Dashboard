@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {FiSettings} from 'react-icons/fi';
 import {TooltipComponent} from '@syncfusion/ej2-react-popups';
 import {useStateContext} from './contexts/ContextProvider'
+import Toast from './components/Toast';
 
 const App = () => {
 
@@ -51,6 +52,8 @@ const App = () => {
                 )}
 
                 {isAuthenticated && themeSettings && <ThemeSettings/>}
+                {/* global toasts */}
+                <Toast />
 
                 <div>
                     <Routes>
@@ -58,29 +61,29 @@ const App = () => {
                         <Route path="/login" element={<Login/>} />
 
                         {/* Protected Dashboard */}
-                        <Route path="/" element={<RequireAuth><Ecommerce/></RequireAuth>} />
-                        <Route path="/ecommerce" element={<RequireAuth><Ecommerce/></RequireAuth>} />
+                        {/* <Route path="/" element={<RequireAuth><Ecommerce/></RequireAuth>} /> */}
+                        {/* <Route path="/ecommerce" element={<RequireAuth><Ecommerce/></RequireAuth>} /> */}
 
                         {/* Pages */}
-                        <Route path="/orders" element={<RequireAuth><Orders/></RequireAuth>} />
-                        <Route path="/employees" element={<RequireAuth><Employees/></RequireAuth>} />
+                        {/* <Route path="/orders" element={<RequireAuth><Orders/></RequireAuth>} /> */}
                         <Route path="/customers" element={<RequireAuth><Customers/></RequireAuth>} />
+                        {/* <Route path="/customers" element={<RequireAuth><Customers/></RequireAuth>} /> */}
 
                         {/* Apps */}
-                        <Route path="/kanban" element={<RequireAuth><Kanban/></RequireAuth>} />
+                        {/* <Route path="/kanban" element={<RequireAuth><Kanban/></RequireAuth>} />
                         <Route path="/editor" element={<RequireAuth><Editor/></RequireAuth>} />
                         <Route path="/calendar" element={<RequireAuth><Calendar/></RequireAuth>} />
-                        <Route path="/color-picker" element={<RequireAuth><ColorPicker/></RequireAuth>} />
+                        <Route path="/color-picker" element={<RequireAuth><ColorPicker/></RequireAuth>} /> */}
 
                         {/* Charts */}
-                        <Route path="/line" element={<RequireAuth><Line/></RequireAuth>} />
+                        {/* <Route path="/line" element={<RequireAuth><Line/></RequireAuth>} />
                         <Route path="/area" element={<RequireAuth><Area/></RequireAuth>} />
                         <Route path="/bar" element={<RequireAuth><Bar/></RequireAuth>} />
                         <Route path="/pie" element={<RequireAuth><Pie/></RequireAuth>} />
                         <Route path="/financial" element={<RequireAuth><Financial/></RequireAuth>} />
                         <Route path="/color-mapping" element={<RequireAuth><ColorMapping/></RequireAuth>} />
                         <Route path="/pyramid" element={<RequireAuth><Pyramid/></RequireAuth>} />
-                        <Route path="/stacked" element={<RequireAuth><Stacked/></RequireAuth>} />
+                        <Route path="/stacked" element={<RequireAuth><Stacked/></RequireAuth>} /> */}
                     </Routes>
                 </div>
             </div>

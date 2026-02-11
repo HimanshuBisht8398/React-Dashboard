@@ -27,7 +27,7 @@ const SideBar = () => {
           <Link to="/" onClick={handleCloseSideBar} 
           className='items-center flex gap-3 ml-3 mt-4 text-xl font-extrabold tracking-tight
           dark:text-white text-slate-900'>
-            <SiShopware/> <span>Shoppy</span>
+             <span>Hi Hills</span>
           </Link>
           <TooltipComponent content="Menu" position='BottomCenter'>
               <button type='button' onClick={()=>setActiveMenu((prevActiveMenu)=> !prevActiveMenu)} className='text-xl rounded-full p-3
