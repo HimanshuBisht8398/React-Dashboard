@@ -41,7 +41,7 @@ const SideBar = () => {
             <div key={item.title}>
               <p className='text-gray-400 m-3 mt-4 uppercase'>{item.title}</p>
               {item.links.map((link)=>(
-                <NavLink to={`/${link.name}`} key={link.name} style={({isActive})=> ({backgroundColor: isActive ? currentColor: ''})} 
+                <NavLink to={`/${link.path || link.name.toLowerCase().replace(/\s+/g, '-')}`} key={link.name} style={({isActive})=> ({backgroundColor: isActive ? currentColor: ''})} 
                 onClick={handleCloseSideBar}// click on side bar items , close the side bar in mobile view
                  className={({isActive})=>isActive ? activeLink : normalLink}>
                   {link.icon}

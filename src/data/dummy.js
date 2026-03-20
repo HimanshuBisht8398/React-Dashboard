@@ -121,20 +121,20 @@ export const EditorData = () => (
   </div>
 );
 const customerGridImage = (props) => (
-  <div className="image flex gap-4">
-    <div>
-      <p>{props.CustomerName}</p>
-      <p>{props.CustomerEmail}</p>
-    </div>
+  <div className="image flex items-center ">
+    <img className=""   />
+    
+      <p className="font-medium">{props.CustomerName}</p>
+    
   </div>
 );
 
-const customerGridStatus = (props) => (
-  <div className="flex gap-2 justify-center items-center text-gray-700 capitalize">
-    <p style={{ background: props.StatusBg }} className="rounded-full h-3 w-3" />
-    <p>{props.Status}</p>
-  </div>
-);
+// const customerGridStatus = (props) => (
+//   <div className="flex gap-2 justify-center items-center text-gray-700 capitalize">
+//     <p style={{ background: props.StatusBg }} className="rounded-full h-3 w-3" />
+//     <p>{props.Status}</p>
+//   </div>
+// );
 export const areaPrimaryXAxis = {
   valueType: 'DateTime',
   labelFormat: 'y',
@@ -388,44 +388,50 @@ export const LinePrimaryYAxis = {
 
 export const customersGrid = [
   { type: 'checkbox', width: '50' },
-  { headerText: 'Name',
-    width: '150',
-    template: customerGridImage,
-    textAlign: 'Center' },
-  { field: 'CustomerName',
-    headerText: 'Customer Name',
-    width: '150',
-    textAlign: 'Center' },
-    { field: 'Customeremail',
-    headerText: 'Customer Email',
-    width: '150',
-    textAlign: 'Center' },
-  { field: 'Status',
-    headerText: 'Status',
-    width: '130',
-    format: 'yMd',
-    textAlign: 'Center',
-    template: customerGridStatus },
   {
-    field: 'Weeks',
-    headerText: 'Weeks',
-    width: '100',
+    headerText: 'Name',
+    width: '200',
+    template: customerGridImage,
+    textAlign: 'Center',
+  },
+  {
+    field: 'CustomerEmail',
+    headerText: 'Customer Email',
+    width: '180',
+    textAlign: 'Center',
+  },
+  // { field: 'Status',
+  //   headerText: 'Status',
+  //   width: '130',
+  //   format: 'yMd',
+  //   textAlign: 'Center',
+  //   template: customerGridStatus },
+  {
+    field: 'Mobile Number',
+    headerText: 'M.Number',
+    width: '180',
     format: 'C2',
     textAlign: 'Center' },
-  { field: 'Budget',
-    headerText: 'Budget',
-    width: '100',
+  { field: 'Destination',
+    headerText: 'Destination/Package',
+    width: '180',
     format: 'yMd',
     textAlign: 'Center' },
 
-  { field: 'Location',
-    headerText: 'Location',
-    width: '150',
+  { field: 'Persons',
+    headerText: 'Persons',
+    width: '120',
     textAlign: 'Center' },
 
-  { field: 'CustomerID',
-    headerText: 'Customer ID',
-    width: '120',
+  { field: 'Date of Journey',
+    headerText: 'Date of Journey',
+    width: '150',
+    textAlign: 'Center',
+    isPrimaryKey: true,
+  },
+  { field: 'Date of Booking',
+    headerText: 'Date of Booking',
+    width: '150',
     textAlign: 'Center',
     isPrimaryKey: true,
   },
@@ -474,12 +480,14 @@ export const links = [
     links: [
       {
          name: 'Customers',
+        path: 'customers',
         icon: <IoMdContacts />,
       },
-      // {
-      //   name: 'ecommerce',
-      //   icon: <FiShoppingBag />,
-      // },
+      {
+        name: 'Cab Bookings',
+        path: 'cab-bookings',
+        icon: <FiShoppingBag />,
+      },
     ],
   },
 
@@ -875,60 +883,66 @@ export const userProfileData = [
 
 export const ordersGrid = [
   {
-    headerText: 'Image',
-    template: gridOrderImage,
+    headerText: 'S. No.',
     textAlign: 'Center',
     width: '120',
   },
   {
-    field: 'OrderItems',
-    headerText: 'Item',
+    field: 'Vehicle Type',
+    headerText: 'Vehicle Type',
     width: '150',
     editType: 'dropdownedit',
     textAlign: 'Center',
   },
-  { field: 'CustomerName',
-    headerText: 'Customer Name',
+  { field: 'No. of Persons',
+    headerText: 'No. of Persons',
     width: '150',
     textAlign: 'Center',
   },
   {
-    field: 'TotalAmount',
-    headerText: 'Total Amount',
+    field: 'Pickup',
+    headerText: 'Pickup',
     format: 'C2',
     textAlign: 'Center',
     editType: 'numericedit',
     width: '150',
   },
   {
-    headerText: 'Status',
-    template: gridOrderStatus,
-    field: 'OrderItems',
+    headerText: 'Destination',
+    // template: gridOrderStatus,
     textAlign: 'Center',
     width: '120',
   },
   {
-    field: 'OrderID',
-    headerText: 'Order ID',
+    field: 'M. Number',
+    headerText: 'M. Number',
     width: '120',
     textAlign: 'Center',
   },
 
   {
-    field: 'Location',
-    headerText: 'Location',
+    field: 'From Date',
+    headerText: 'From Date',
     width: '150',
     textAlign: 'Center',
   },
+  {
+    field: 'To Date',
+    headerText: 'To Date',
+    width: '150',
+    textAlign: 'Center',
+  },
+  {
+    field: 'Date of Booking',
+    headerText: 'Date of Booking',
+    width: '150',
+    textAlign: 'Center',
+  }
 ];
 
 export const customersData = [
   {
     CustomerID: 1001,
-    CustomerName: 'Nirav Joshi',
-    CustomerEmail: 'nirav@gmail.com',
-    CustomerImage:
-      avatar2,
     ProjectName: 'Hosting Press HTML',
     Status: 'Active',
     StatusBg: '#8BE78B',
@@ -939,13 +953,8 @@ export const customersData = [
   {
     CustomerID: 1002,
 
-    CustomerName: 'Sunil Joshi',
-    CustomerEmail: 'sunil@gmail.com',
     ProjectName: 'Elite Admin',
     Status: 'Active',
-    CustomerImage:
-      avatar3,
-
     StatusBg: '#8BE78B',
     Weeks: '11',
     Budget: '$3.9k',
@@ -953,13 +962,8 @@ export const customersData = [
   },
   {
     CustomerID: 1003,
-
-    CustomerName: 'Andrew McDownland',
-    CustomerEmail: 'andrew@gmail.com',
     ProjectName: 'Real Homes WP Theme',
     Status: 'Pending',
-    CustomerImage:
-      avatar4,
     StatusBg: '#FEC90F',
     Weeks: '19',
     Budget: '$24.5k',
@@ -968,12 +972,8 @@ export const customersData = [
   {
     CustomerID: 1004,
 
-    CustomerName: 'Christopher Jamil',
-    CustomerEmail: 'jamil@gmail.com',
     ProjectName: 'MedicalPro WP Theme',
     Status: 'Completed',
-    CustomerImage:
-      avatar,
     StatusBg: '#8BE78B',
     Weeks: '34',
     Budget: '$16.5k',
@@ -982,12 +982,8 @@ export const customersData = [
   {
     CustomerID: 1005,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
-    CustomerImage:
-      avatar2,
     StatusBg: 'red',
     Weeks: '34',
     Budget: '$16.5k',
@@ -995,10 +991,6 @@ export const customersData = [
   },
   {
     CustomerID: 1006,
-    CustomerName: 'Nirav Joshi',
-    CustomerEmail: 'nirav@gmail.com',
-    CustomerImage:
-      avatar2,
     ProjectName: 'Hosting Press HTML',
     Status: 'Active',
     StatusBg: '#8BE78B',
@@ -1009,13 +1001,8 @@ export const customersData = [
   {
     CustomerID: 1007,
 
-    CustomerName: 'Sunil Joshi',
-    CustomerEmail: 'sunil@gmail.com',
     ProjectName: 'Elite Admin',
     Status: 'Active',
-    CustomerImage:
-      avatar3,
-
     StatusBg: '#8BE78B',
     Weeks: '11',
     Budget: '$3.9k',
@@ -1024,12 +1011,8 @@ export const customersData = [
   {
     CustomerID: 1008,
 
-    CustomerName: 'Andrew McDownland',
-    CustomerEmail: 'andrew@gmail.com',
     ProjectName: 'Real Homes WP Theme',
     Status: 'Pending',
-    CustomerImage:
-      avatar4,
     StatusBg: '#FEC90F',
     Weeks: '19',
     Budget: '$24.5k',
@@ -1038,12 +1021,8 @@ export const customersData = [
   {
     CustomerID: 1009,
 
-    CustomerName: 'Christopher Jamil',
-    CustomerEmail: 'jamil@gmail.com',
     ProjectName: 'MedicalPro WP Theme',
     Status: 'Completed',
-    CustomerImage:
-      avatar,
     StatusBg: '#8BE78B',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1052,12 +1031,8 @@ export const customersData = [
   {
     CustomerID: 1010,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
-    CustomerImage:
-      avatar2,
     StatusBg: 'red',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1065,10 +1040,6 @@ export const customersData = [
   },
   {
     CustomerID: 1011,
-    CustomerName: 'Nirav Joshi',
-    CustomerEmail: 'nirav@gmail.com',
-    CustomerImage:
-      avatar2,
     ProjectName: 'Hosting Press HTML',
     Status: 'Active',
     StatusBg: '#8BE78B',
@@ -1079,13 +1050,8 @@ export const customersData = [
   {
     CustomerID: 1012,
 
-    CustomerName: 'Sunil Joshi',
-    CustomerEmail: 'sunil@gmail.com',
     ProjectName: 'Elite Admin',
     Status: 'Active',
-    CustomerImage:
-      avatar3,
-
     StatusBg: '#8BE78B',
     Weeks: '11',
     Budget: '$3.9k',
@@ -1094,12 +1060,8 @@ export const customersData = [
   {
     CustomerID: 1013,
 
-    CustomerName: 'Andrew McDownland',
-    CustomerEmail: 'andrew@gmail.com',
     ProjectName: 'Real Homes WP Theme',
     Status: 'Pending',
-    CustomerImage:
-      avatar4,
     StatusBg: '#FEC90F',
     Weeks: '19',
     Budget: '$24.5k',
@@ -1108,12 +1070,8 @@ export const customersData = [
   {
     CustomerID: 1014,
 
-    CustomerName: 'Christopher Jamil',
-    CustomerEmail: 'jamil@gmail.com',
     ProjectName: 'MedicalPro WP Theme',
     Status: 'Completed',
-    CustomerImage:
-      avatar,
     StatusBg: '#8BE78B',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1122,12 +1080,8 @@ export const customersData = [
   {
     CustomerID: 1015,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
-    CustomerImage:
-      avatar2,
     StatusBg: 'red',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1135,10 +1089,6 @@ export const customersData = [
   },
   {
     CustomerID: 1016,
-    CustomerName: 'Nirav Joshi',
-    CustomerEmail: 'nirav@gmail.com',
-    CustomerImage:
-      avatar2,
     ProjectName: 'Hosting Press HTML',
     Status: 'Active',
     StatusBg: '#8BE78B',
@@ -1149,13 +1099,8 @@ export const customersData = [
   {
     CustomerID: 1017,
 
-    CustomerName: 'Sunil Joshi',
-    CustomerEmail: 'sunil@gmail.com',
     ProjectName: 'Elite Admin',
     Status: 'Active',
-    CustomerImage:
-      avatar3,
-
     StatusBg: '#8BE78B',
     Weeks: '11',
     Budget: '$3.9k',
@@ -1164,12 +1109,8 @@ export const customersData = [
   {
     CustomerID: 1018,
 
-    CustomerName: 'Andrew McDownland',
-    CustomerEmail: 'andrew@gmail.com',
     ProjectName: 'Real Homes WP Theme',
     Status: 'Pending',
-    CustomerImage:
-      avatar4,
     StatusBg: '#FEC90F',
     Weeks: '19',
     Budget: '$24.5k',
@@ -1178,12 +1119,8 @@ export const customersData = [
   {
     CustomerID: 1019,
 
-    CustomerName: 'Christopher Jamil',
-    CustomerEmail: 'jamil@gmail.com',
     ProjectName: 'MedicalPro WP Theme',
     Status: 'Completed',
-    CustomerImage:
-      avatar,
     StatusBg: '#8BE78B',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1192,12 +1129,8 @@ export const customersData = [
   {
     CustomerID: 1020,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
-    CustomerImage:
-      avatar2,
     StatusBg: 'red',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1205,10 +1138,6 @@ export const customersData = [
   },
   {
     CustomerID: 1021,
-    CustomerName: 'Nirav Joshi',
-    CustomerEmail: 'nirav@gmail.com',
-    CustomerImage:
-      avatar2,
     ProjectName: 'Hosting Press HTML',
     Status: 'Active',
     StatusBg: '#8BE78B',
@@ -1219,13 +1148,8 @@ export const customersData = [
   {
     CustomerID: 1022,
 
-    CustomerName: 'Sunil Joshi',
-    CustomerEmail: 'sunil@gmail.com',
     ProjectName: 'Elite Admin',
     Status: 'Active',
-    CustomerImage:
-      avatar3,
-
     StatusBg: '#8BE78B',
     Weeks: '11',
     Budget: '$3.9k',
@@ -1234,12 +1158,8 @@ export const customersData = [
   {
     CustomerID: 1023,
 
-    CustomerName: 'Andrew McDownland',
-    CustomerEmail: 'andrew@gmail.com',
     ProjectName: 'Real Homes WP Theme',
     Status: 'Pending',
-    CustomerImage:
-      avatar4,
     StatusBg: '#FEC90F',
     Weeks: '19',
     Budget: '$24.5k',
@@ -1248,12 +1168,8 @@ export const customersData = [
   {
     CustomerID: 1024,
 
-    CustomerName: 'Christopher Jamil',
-    CustomerEmail: 'jamil@gmail.com',
     ProjectName: 'MedicalPro WP Theme',
     Status: 'Completed',
-    CustomerImage:
-      avatar,
     StatusBg: '#8BE78B',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1262,12 +1178,8 @@ export const customersData = [
   {
     CustomerID: 1025,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
-    CustomerImage:
-      avatar2,
     StatusBg: 'red',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1275,10 +1187,6 @@ export const customersData = [
   },
   {
     CustomerID: 1026,
-    CustomerName: 'Nirav Joshi',
-    CustomerEmail: 'nirav@gmail.com',
-    CustomerImage:
-      avatar2,
     ProjectName: 'Hosting Press HTML',
     Status: 'Active',
     StatusBg: '#8BE78B',
@@ -1289,13 +1197,8 @@ export const customersData = [
   {
     CustomerID: 1027,
 
-    CustomerName: 'Sunil Joshi',
-    CustomerEmail: 'sunil@gmail.com',
     ProjectName: 'Elite Admin',
     Status: 'Active',
-    CustomerImage:
-      avatar3,
-
     StatusBg: '#8BE78B',
     Weeks: '11',
     Budget: '$3.9k',
@@ -1304,12 +1207,8 @@ export const customersData = [
   {
     CustomerID: 1028,
 
-    CustomerName: 'Andrew McDownland',
-    CustomerEmail: 'andrew@gmail.com',
     ProjectName: 'Real Homes WP Theme',
     Status: 'Pending',
-    CustomerImage:
-      avatar4,
     StatusBg: '#FEC90F',
     Weeks: '19',
     Budget: '$24.5k',
@@ -1318,12 +1217,8 @@ export const customersData = [
   {
     CustomerID: 1029,
 
-    CustomerName: 'Christopher Jamil',
-    CustomerEmail: 'jamil@gmail.com',
     ProjectName: 'MedicalPro WP Theme',
     Status: 'Completed',
-    CustomerImage:
-      avatar,
     StatusBg: '#8BE78B',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1332,12 +1227,8 @@ export const customersData = [
   {
     CustomerID: 1030,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
-    CustomerImage:
-      avatar2,
     StatusBg: 'red',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1345,10 +1236,6 @@ export const customersData = [
   },
   {
     CustomerID: 1031,
-    CustomerName: 'Nirav Joshi',
-    CustomerEmail: 'nirav@gmail.com',
-    CustomerImage:
-      avatar2,
     ProjectName: 'Hosting Press HTML',
     Status: 'Active',
     StatusBg: '#8BE78B',
@@ -1359,13 +1246,8 @@ export const customersData = [
   {
     CustomerID: 1032,
 
-    CustomerName: 'Sunil Joshi',
-    CustomerEmail: 'sunil@gmail.com',
     ProjectName: 'Elite Admin',
     Status: 'Active',
-    CustomerImage:
-      avatar3,
-
     StatusBg: '#8BE78B',
     Weeks: '11',
     Budget: '$3.9k',
@@ -1374,12 +1256,8 @@ export const customersData = [
   {
     CustomerID: 1033,
 
-    CustomerName: 'Andrew McDownland',
-    CustomerEmail: 'andrew@gmail.com',
     ProjectName: 'Real Homes WP Theme',
     Status: 'Pending',
-    CustomerImage:
-      avatar4,
     StatusBg: '#FEC90F',
     Weeks: '19',
     Budget: '$24.5k',
@@ -1388,12 +1266,8 @@ export const customersData = [
   {
     CustomerID: 1034,
 
-    CustomerName: 'Christopher Jamil',
-    CustomerEmail: 'jamil@gmail.com',
     ProjectName: 'MedicalPro WP Theme',
     Status: 'Completed',
-    CustomerImage:
-      avatar,
     StatusBg: '#8BE78B',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1402,12 +1276,8 @@ export const customersData = [
   {
     CustomerID: 1035,
 
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
-    CustomerImage:
-      avatar2,
     StatusBg: 'red',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1415,10 +1285,6 @@ export const customersData = [
   },
   {
     CustomerID: 1036,
-    CustomerName: 'Nirav Joshi',
-    CustomerEmail: 'nirav@gmail.com',
-    CustomerImage:
-      avatar2,
     ProjectName: 'Hosting Press HTML',
     Status: 'Active',
     StatusBg: '#8BE78B',
@@ -1429,13 +1295,8 @@ export const customersData = [
   {
     CustomerID: 1037,
 
-    CustomerName: 'Sunil Joshi',
-    CustomerEmail: 'sunil@gmail.com',
     ProjectName: 'Elite Admin',
     Status: 'Active',
-    CustomerImage:
-      avatar3,
-
     StatusBg: '#8BE78B',
     Weeks: '11',
     Budget: '$3.9k',
@@ -1444,12 +1305,8 @@ export const customersData = [
   {
     CustomerID: 1038,
 
-    CustomerName: 'Andrew McDownland',
-    CustomerEmail: 'andrew@gmail.com',
     ProjectName: 'Real Homes WP Theme',
     Status: 'Pending',
-    CustomerImage:
-      avatar4,
     StatusBg: '#FEC90F',
     Weeks: '19',
     Budget: '$24.5k',
@@ -1457,12 +1314,8 @@ export const customersData = [
   },
   {
     CustomerID: 1039,
-    CustomerName: 'Christopher Jamil',
-    CustomerEmail: 'jamil@gmail.com',
     ProjectName: 'MedicalPro WP Theme',
     Status: 'Completed',
-    CustomerImage:
-      avatar,
     StatusBg: '#8BE78B',
     Weeks: '34',
     Budget: '$16.5k',
@@ -1470,12 +1323,8 @@ export const customersData = [
   },
   {
     CustomerID: 1040,
-    CustomerName: 'Michael',
-    CustomerEmail: 'michael@gmail.com',
     ProjectName: 'Weekly WP Theme',
     Status: 'Cancel',
-    CustomerImage:
-      avatar2,
     StatusBg: 'red',
     Weeks: '34',
     Budget: '$16.5k',
@@ -2130,7 +1979,6 @@ export const ordersData = [
     CustomerName: 'Vinet',
 
     TotalAmount: 32.38,
-    OrderItems: 'Fresh Tomato',
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
@@ -2141,7 +1989,6 @@ export const ordersData = [
     OrderID: 345653,
     CustomerName: 'Carson Darrin',
     TotalAmount: 56.34,
-    OrderItems: 'Butter Scotch',
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2152,7 +1999,6 @@ export const ordersData = [
     OrderID: 390457,
     CustomerName: 'Fran Perez',
     TotalAmount: 93.31,
-    OrderItems: 'Candy Gucci',
     Location: 'New York',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2163,7 +2009,6 @@ export const ordersData = [
     OrderID: 893486,
     CustomerName: 'Anika Viseer',
     TotalAmount: 93.31,
-    OrderItems: 'Night Lamp',
     Location: 'Germany',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2174,7 +2019,6 @@ export const ordersData = [
     OrderID: 748975,
     CustomerName: 'Miron Vitold',
     TotalAmount: 23.99,
-    OrderItems: 'Healthcare Erbology',
     Location: 'Spain',
     Status: 'rejected',
     StatusBg: 'red',
@@ -2185,7 +2029,6 @@ export const ordersData = [
     OrderID: 94757,
     CustomerName: 'Omar Darobe',
     TotalAmount: 95.99,
-    OrderItems: 'Makeup Lancome Rouge',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2196,7 +2039,6 @@ export const ordersData = [
     OrderID: 944895,
     CustomerName: 'Lulia albu',
     TotalAmount: 17.99,
-    OrderItems: 'Skincare',
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2207,7 +2049,6 @@ export const ordersData = [
     OrderID: 845954,
     CustomerName: 'Penjani',
     TotalAmount: 59.99,
-    OrderItems: 'Headphone',
     Location: 'USA',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2218,7 +2059,6 @@ export const ordersData = [
     OrderID: 845954,
     CustomerName: 'Jie Yan',
     TotalAmount: 87.99,
-    OrderItems: 'Shoes',
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
@@ -2229,7 +2069,6 @@ export const ordersData = [
     OrderID: 874534,
     CustomerName: 'Danai',
     TotalAmount: 122.99,
-    OrderItems: 'Watch',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2240,7 +2079,6 @@ export const ordersData = [
     OrderID: 38489,
     CustomerName: 'Miron',
     TotalAmount: 87.99,
-    OrderItems: 'Ice Cream',
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2251,7 +2089,6 @@ export const ordersData = [
     OrderID: 24546,
     CustomerName: 'Frank',
     TotalAmount: 84.99,
-    OrderItems: 'Pan Cake',
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2262,7 +2099,6 @@ export const ordersData = [
     OrderID: 874534,
     CustomerName: 'Danai',
     TotalAmount: 122.99,
-    OrderItems: 'Watch',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2274,7 +2110,6 @@ export const ordersData = [
     CustomerName: 'Vinet',
 
     TotalAmount: 32.38,
-    OrderItems: 'Fresh Tomato',
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
@@ -2285,7 +2120,6 @@ export const ordersData = [
     OrderID: 345653,
     CustomerName: 'Carson Darrin',
     TotalAmount: 56.34,
-    OrderItems: 'Butter Scotch',
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2296,7 +2130,6 @@ export const ordersData = [
     OrderID: 390457,
     CustomerName: 'Fran Perez',
     TotalAmount: 93.31,
-    OrderItems: 'Candy Gucci',
     Location: 'New York',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2307,7 +2140,6 @@ export const ordersData = [
     OrderID: 893486,
     CustomerName: 'Anika Viseer',
     TotalAmount: 93.31,
-    OrderItems: 'Night Lamp',
     Location: 'Germany',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2318,7 +2150,6 @@ export const ordersData = [
     OrderID: 748975,
     CustomerName: 'Miron Vitold',
     TotalAmount: 23.99,
-    OrderItems: 'Healthcare Erbology',
     Location: 'Spain',
     Status: 'rejected',
     StatusBg: 'red',
@@ -2329,7 +2160,6 @@ export const ordersData = [
     OrderID: 94757,
     CustomerName: 'Omar Darobe',
     TotalAmount: 95.99,
-    OrderItems: 'Makeup Lancome Rouge',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2340,7 +2170,6 @@ export const ordersData = [
     OrderID: 944895,
     CustomerName: 'Lulia albu',
     TotalAmount: 17.99,
-    OrderItems: 'Skincare',
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2351,7 +2180,6 @@ export const ordersData = [
     OrderID: 845954,
     CustomerName: 'Penjani',
     TotalAmount: 59.99,
-    OrderItems: 'Headphone',
     Location: 'USA',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2362,7 +2190,6 @@ export const ordersData = [
     OrderID: 845954,
     CustomerName: 'Jie Yan',
     TotalAmount: 87.99,
-    OrderItems: 'Shoes',
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
@@ -2373,7 +2200,6 @@ export const ordersData = [
     OrderID: 874534,
     CustomerName: 'Danai',
     TotalAmount: 122.99,
-    OrderItems: 'Watch',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2384,7 +2210,6 @@ export const ordersData = [
     OrderID: 38489,
     CustomerName: 'Miron',
     TotalAmount: 87.99,
-    OrderItems: 'Ice Cream',
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2395,7 +2220,6 @@ export const ordersData = [
     OrderID: 24546,
     CustomerName: 'Frank',
     TotalAmount: 84.99,
-    OrderItems: 'Pan Cake',
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2406,7 +2230,6 @@ export const ordersData = [
     OrderID: 874534,
     CustomerName: 'Danai',
     TotalAmount: 122.99,
-    OrderItems: 'Watch',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2418,7 +2241,6 @@ export const ordersData = [
     CustomerName: 'Vinet',
 
     TotalAmount: 32.38,
-    OrderItems: 'Fresh Tomato',
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
@@ -2429,7 +2251,6 @@ export const ordersData = [
     OrderID: 345653,
     CustomerName: 'Carson Darrin',
     TotalAmount: 56.34,
-    OrderItems: 'Butter Scotch',
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2440,7 +2261,6 @@ export const ordersData = [
     OrderID: 390457,
     CustomerName: 'Fran Perez',
     TotalAmount: 93.31,
-    OrderItems: 'Candy Gucci',
     Location: 'New York',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2451,7 +2271,6 @@ export const ordersData = [
     OrderID: 893486,
     CustomerName: 'Anika Viseer',
     TotalAmount: 93.31,
-    OrderItems: 'Night Lamp',
     Location: 'Germany',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2462,7 +2281,6 @@ export const ordersData = [
     OrderID: 748975,
     CustomerName: 'Miron Vitold',
     TotalAmount: 23.99,
-    OrderItems: 'Healthcare Erbology',
     Location: 'Spain',
     Status: 'rejected',
     StatusBg: 'red',
@@ -2473,7 +2291,6 @@ export const ordersData = [
     OrderID: 94757,
     CustomerName: 'Omar Darobe',
     TotalAmount: 95.99,
-    OrderItems: 'Makeup Lancome Rouge',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2484,7 +2301,6 @@ export const ordersData = [
     OrderID: 944895,
     CustomerName: 'Lulia albu',
     TotalAmount: 17.99,
-    OrderItems: 'Skincare',
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2495,7 +2311,6 @@ export const ordersData = [
     OrderID: 845954,
     CustomerName: 'Penjani',
     TotalAmount: 59.99,
-    OrderItems: 'Headphone',
     Location: 'USA',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2506,7 +2321,6 @@ export const ordersData = [
     OrderID: 845954,
     CustomerName: 'Jie Yan',
     TotalAmount: 87.99,
-    OrderItems: 'Shoes',
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
@@ -2517,7 +2331,6 @@ export const ordersData = [
     OrderID: 874534,
     CustomerName: 'Danai',
     TotalAmount: 122.99,
-    OrderItems: 'Watch',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2528,7 +2341,6 @@ export const ordersData = [
     OrderID: 38489,
     CustomerName: 'Miron',
     TotalAmount: 87.99,
-    OrderItems: 'Ice Cream',
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2539,7 +2351,6 @@ export const ordersData = [
     OrderID: 24546,
     CustomerName: 'Frank',
     TotalAmount: 84.99,
-    OrderItems: 'Pan Cake',
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2550,7 +2361,6 @@ export const ordersData = [
     OrderID: 874534,
     CustomerName: 'Danai',
     TotalAmount: 122.99,
-    OrderItems: 'Watch',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2562,7 +2372,6 @@ export const ordersData = [
     CustomerName: 'Vinet',
 
     TotalAmount: 32.38,
-    OrderItems: 'Fresh Tomato',
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
@@ -2573,7 +2382,6 @@ export const ordersData = [
     OrderID: 345653,
     CustomerName: 'Carson Darrin',
     TotalAmount: 56.34,
-    OrderItems: 'Butter Scotch',
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2584,7 +2392,6 @@ export const ordersData = [
     OrderID: 390457,
     CustomerName: 'Fran Perez',
     TotalAmount: 93.31,
-    OrderItems: 'Candy Gucci',
     Location: 'New York',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2595,7 +2402,6 @@ export const ordersData = [
     OrderID: 893486,
     CustomerName: 'Anika Viseer',
     TotalAmount: 93.31,
-    OrderItems: 'Night Lamp',
     Location: 'Germany',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2606,7 +2412,6 @@ export const ordersData = [
     OrderID: 748975,
     CustomerName: 'Miron Vitold',
     TotalAmount: 23.99,
-    OrderItems: 'Healthcare Erbology',
     Location: 'Spain',
     Status: 'rejected',
     StatusBg: 'red',
@@ -2617,7 +2422,6 @@ export const ordersData = [
     OrderID: 94757,
     CustomerName: 'Omar Darobe',
     TotalAmount: 95.99,
-    OrderItems: 'Makeup Lancome Rouge',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2628,7 +2432,6 @@ export const ordersData = [
     OrderID: 944895,
     CustomerName: 'Lulia albu',
     TotalAmount: 17.99,
-    OrderItems: 'Skincare',
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2639,7 +2442,6 @@ export const ordersData = [
     OrderID: 845954,
     CustomerName: 'Penjani',
     TotalAmount: 59.99,
-    OrderItems: 'Headphone',
     Location: 'USA',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2650,7 +2452,6 @@ export const ordersData = [
     OrderID: 845954,
     CustomerName: 'Jie Yan',
     TotalAmount: 87.99,
-    OrderItems: 'Shoes',
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
@@ -2661,7 +2462,6 @@ export const ordersData = [
     OrderID: 874534,
     CustomerName: 'Danai',
     TotalAmount: 122.99,
-    OrderItems: 'Watch',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2672,7 +2472,6 @@ export const ordersData = [
     OrderID: 38489,
     CustomerName: 'Miron',
     TotalAmount: 87.99,
-    OrderItems: 'Ice Cream',
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2683,7 +2482,6 @@ export const ordersData = [
     OrderID: 24546,
     CustomerName: 'Frank',
     TotalAmount: 84.99,
-    OrderItems: 'Pan Cake',
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2694,7 +2492,6 @@ export const ordersData = [
     OrderID: 874534,
     CustomerName: 'Danai',
     TotalAmount: 122.99,
-    OrderItems: 'Watch',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2706,7 +2503,6 @@ export const ordersData = [
     CustomerName: 'Vinet',
 
     TotalAmount: 32.38,
-    OrderItems: 'Fresh Tomato',
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
@@ -2717,7 +2513,6 @@ export const ordersData = [
     OrderID: 345653,
     CustomerName: 'Carson Darrin',
     TotalAmount: 56.34,
-    OrderItems: 'Butter Scotch',
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2728,7 +2523,6 @@ export const ordersData = [
     OrderID: 390457,
     CustomerName: 'Fran Perez',
     TotalAmount: 93.31,
-    OrderItems: 'Candy Gucci',
     Location: 'New York',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2739,7 +2533,6 @@ export const ordersData = [
     OrderID: 893486,
     CustomerName: 'Anika Viseer',
     TotalAmount: 93.31,
-    OrderItems: 'Night Lamp',
     Location: 'Germany',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2750,7 +2543,6 @@ export const ordersData = [
     OrderID: 748975,
     CustomerName: 'Miron Vitold',
     TotalAmount: 23.99,
-    OrderItems: 'Healthcare Erbology',
     Location: 'Spain',
     Status: 'rejected',
     StatusBg: 'red',
@@ -2761,7 +2553,6 @@ export const ordersData = [
     OrderID: 94757,
     CustomerName: 'Omar Darobe',
     TotalAmount: 95.99,
-    OrderItems: 'Makeup Lancome Rouge',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2772,7 +2563,6 @@ export const ordersData = [
     OrderID: 944895,
     CustomerName: 'Lulia albu',
     TotalAmount: 17.99,
-    OrderItems: 'Skincare',
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2783,7 +2573,6 @@ export const ordersData = [
     OrderID: 845954,
     CustomerName: 'Penjani',
     TotalAmount: 59.99,
-    OrderItems: 'Headphone',
     Location: 'USA',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2794,7 +2583,6 @@ export const ordersData = [
     OrderID: 845954,
     CustomerName: 'Jie Yan',
     TotalAmount: 87.99,
-    OrderItems: 'Shoes',
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
@@ -2805,7 +2593,6 @@ export const ordersData = [
     OrderID: 874534,
     CustomerName: 'Danai',
     TotalAmount: 122.99,
-    OrderItems: 'Watch',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
@@ -2816,7 +2603,6 @@ export const ordersData = [
     OrderID: 38489,
     CustomerName: 'Miron',
     TotalAmount: 87.99,
-    OrderItems: 'Ice Cream',
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
@@ -2827,7 +2613,6 @@ export const ordersData = [
     OrderID: 24546,
     CustomerName: 'Frank',
     TotalAmount: 84.99,
-    OrderItems: 'Pan Cake',
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
@@ -2838,7 +2623,6 @@ export const ordersData = [
     OrderID: 874534,
     CustomerName: 'Danai',
     TotalAmount: 122.99,
-    OrderItems: 'Watch',
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',

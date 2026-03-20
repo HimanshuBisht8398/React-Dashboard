@@ -65,10 +65,9 @@ const App = () => {
                         {/* <Route path="/ecommerce" element={<RequireAuth><Ecommerce/></RequireAuth>} /> */}
 
                         {/* Pages */}
-                        {/* <Route path="/orders" element={<RequireAuth><Orders/></RequireAuth>} /> */}
+                        <Route path="/cab-bookings" element={<RequireAuth><Orders/></RequireAuth>} />
+                        <Route path="/" element={<RequireAuth><Customers/></RequireAuth>} />
                         <Route path="/customers" element={<RequireAuth><Customers/></RequireAuth>} />
-                        {/* <Route path="/customers" element={<RequireAuth><Customers/></RequireAuth>} /> */}
-
                         {/* Apps */}
                         {/* <Route path="/kanban" element={<RequireAuth><Kanban/></RequireAuth>} />
                         <Route path="/editor" element={<RequireAuth><Editor/></RequireAuth>} />
