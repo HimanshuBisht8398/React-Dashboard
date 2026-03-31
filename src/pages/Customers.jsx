@@ -3,7 +3,7 @@ import {GridComponent,ColumnsDirective,ColumnDirective,Page,Selection,Inject,Edi
   Filter} from '@syncfusion/ej2-react-grids';
 import { Header } from '../components';
 
-const API_URL = 'http://localhost:4000/customers';
+const API_URL = 'https://hihillsbackend-production.up.railway.app/customers';
 
 const formatDate = (value) => {
   if (!value) return '-';
@@ -30,8 +30,18 @@ const Customers = () => {
       try {
         setIsLoading(true);
         setError('');
+        const accessToken = localStorage.getItem('accessToken');
 
-        const response = await fetch(API_URL, { signal: controller.signal });
+        if (!accessToken) {
+          throw new Error('Access token not found. Please login again.');
+        }
+
+        const response = await fetch(API_URL, {
+          signal: controller.signal,
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
         }
@@ -42,6 +52,7 @@ const Customers = () => {
           serialNumber: index + 1,
           name: customer.name || '-',
           email: customer.email || '-',
+          phone:customer.mobileNumber||'-',
           destination: customer.destination || '-',
           numberOfPersons: customer.numberOfPersons ?? '-',
           dateOfJourney: formatDate(customer.dateofjourney),
@@ -84,6 +95,7 @@ const Customers = () => {
           <ColumnDirective field='serialNumber' headerText='S. No.' textAlign='Center' width='110' />
           <ColumnDirective field='name' headerText='Name' textAlign='Center' width='180' />
           <ColumnDirective field='email' headerText='Email' textAlign='Center' width='220' />
+          <ColumnDirective field='phone' headerText='phone' textAlign='Center' width='120' />
           <ColumnDirective field='destination' headerText='Destination' textAlign='Center' width='220' />
           <ColumnDirective field='numberOfPersons' headerText='No. of Persons' textAlign='Center' width='150' />
           <ColumnDirective field='dateOfJourney' headerText='Date of Journey' textAlign='Center' width='160' />

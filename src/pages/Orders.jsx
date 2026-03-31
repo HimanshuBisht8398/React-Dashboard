@@ -30,8 +30,18 @@ const Orders = () => {
       try {
         setIsLoading(true);
         setError('');
+        const accessToken = localStorage.getItem('accessToken');
 
-        const response = await fetch(API_URL, { signal: controller.signal });
+        if (!accessToken) {
+          throw new Error('Access token not found. Please login again.');
+        }
+
+        const response = await fetch(API_URL, {
+          signal: controller.signal,
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
         }

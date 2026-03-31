@@ -3,15 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const { login, showToast } = useStateContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await login({ username, password });
+    setError('');
+    setIsSubmitting(true);
+
+    const res = await login({ email, password });
+
+    setIsSubmitting(false);
     if (res.success) {
       showToast('Logged in successfully', 'success');
       navigate('/');
@@ -26,12 +32,14 @@ const Login = () => {
         <h2 className="text-2xl mb-4">Admin Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block mb-1">Username</label>
+            <label className="block mb-1">Email</label>
             <input
+              type="email"
               className="w-full p-2 border rounded"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="admin"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="himanshu@example.com"
+              autoComplete="email"
             />
           </div>
           <div className="mb-4">
@@ -41,13 +49,20 @@ const Login = () => {
               className="w-full p-2 border rounded"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="admin123"
+              placeholder="Enter your password"
+              autoComplete="current-password"
             />
           </div>
           {error && <div className="text-red-500 mb-2">{error}</div>}
           <div className="flex items-center justify-between">
-            <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">Sign in</button>
-            <div className="text-sm text-gray-600">Use <strong>admin</strong>/<strong>admin123</strong></div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-60"
+            >
+              {isSubmitting ? 'Signing in...' : 'Sign in'}
+            </button>
+            <div className="text-sm text-gray-600">Uses the admin login API</div>
           </div>
         </form>
       </div>
