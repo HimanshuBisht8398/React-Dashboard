@@ -3,7 +3,7 @@ import {GridComponent, ColumnDirective, ColumnsDirective,Resize,Sort,ContextMenu
   ,Page, ExcelExport,PdfExport,Edit,Inject} from '@syncfusion/ej2-react-grids';
 import {Header} from '../components';
 
-const API_URL = 'http://localhost:4000/cab_models';
+const API_URL = 'https://hihillsbackend-production.up.railway.app/cab_models';
 
 const formatDate = (value) => {
   if (!value) return '-';

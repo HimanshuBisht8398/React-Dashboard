@@ -1,8 +1,8 @@
 import React , {createContext, useCallback, useContext, useEffect, useState} from "react";
 
 const StateContext = createContext();
-const ADMIN_LOGIN_API_URL = 'http://localhost:4000/admin/login';
-const NOTIFICATIONS_API_URL = 'http://localhost:4000/notifications';
+const ADMIN_LOGIN_API_URL = 'https://hihillsbackend-production.up.railway.app/admin/login';
+const NOTIFICATIONS_API_URL = 'https://hihillsbackend-production.up.railway.app/notifications';
 const SEEN_NOTIFICATIONS_STORAGE_KEY = 'seenNotificationIds';
 
 const initialState = {
